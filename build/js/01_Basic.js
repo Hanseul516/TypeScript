@@ -1,6 +1,6 @@
 "use strict";
 // chapter2: Basic Types
-let myName = 'hanseul'; // 문자열 타입 변수 선언과 초기화
+let myName = 'Tom'; // 문자열 타입 변수 선언과 초기화
 let meaningOfLife; // 숫자 타입 변수 선언
 let isLoading; // 불리언 타입 변수 선언
 let album; // 모든 타입을 저장할 수 있는 변수 선언
