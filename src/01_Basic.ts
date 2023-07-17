@@ -1,6 +1,6 @@
 // chapter2: Basic Types
 
-let myName: string = 'hanseul';  // 문자열 타입 변수 선언과 초기화
+let myName: string = 'Tom';  // 문자열 타입 변수 선언과 초기화
 let meaningOfLife: number;  // 숫자 타입 변수 선언
 let isLoading: boolean;  // 불리언 타입 변수 선언
 let album: any;  // 모든 타입을 저장할 수 있는 변수 선언
