@@ -1,4 +1,5 @@
 "use strict";
+// Assertion
 //convert to more or less specific
 let a = 'hello';
 let b = a; // less specific
@@ -13,5 +14,5 @@ const addOrConcat = (a, b, c) => {
 let myVal = addOrConcat(2, 2, 'concat');
 // Be careful! TS sees no problem - but a string is returned
 let nextVal = addOrConcat(2, 2, 'concat');
-10;
+// 10 as string
 10;
