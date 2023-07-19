@@ -30,26 +30,5 @@ class WebDev extends Coder {
 }
 const Sara = new WebDev('Mac', 'Sara', 'Lofi', 25);
 console.log(Sara.getLang());
-class Guitarist_ {
-    constructor(name, instrument) {
-        this.name = name;
-        this.instrument = instrument;
-    }
-    play(action) {
-        return `${this.name} ${action} the ${this.instrument}`;
-    }
-}
-const Page = new Guitarist_('Jimmy', 'guitar');
-console.log(Page.play('strums'));
-class Peeps {
-    static getCount() {
-        return Peeps.count;
-    }
-    constructor(name) {
-        this.name = name;
-        this.name = name;
-        this.id = ++Peeps.count;
-    }
-}
-Peeps.count = 0;
-const Jo;
+// console.log(Sara.age) //private 외부접근불가
+// console.log(Sara.lang) //protected 외부접근불가
