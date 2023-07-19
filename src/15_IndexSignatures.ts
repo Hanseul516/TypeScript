@@ -5,62 +5,86 @@
 // }
 
 interface TransactionObj {
-    readonly [index: string]: number
-    Pizza: number,
-    Books: number,
-    Job: number
+    readonly [index: string]: number;
+    Pizza: number;
+    Books: number;
+    Job: number;
 }
 
 const todaysTransactions: TransactionObj = {
     Pizza: -10,
     Books: -5,
     Job: 50
-}
+};
 
-console.log(todaysTransactions.Pizza)
-console.log(todaysTransactions['Pizza'])
+console.log(todaysTransactions.Pizza);
+console.log(todaysTransactions['Pizza']);
 
-let prop: string = 'Pizza'
-console.log(todaysTransactions[prop])
+let prop: string = 'Pizza';
+console.log(todaysTransactions[prop]);
 
-const todaysNet = (transactions: TransactionObj):
-    number => {
-    let total = 0
+const todaysNet = (transactions: TransactionObj): number => {
+    let total = 0;
     for (const transaction in transactions) {
-        total += transactions[transaction]
+        total += transactions[transaction];
     }
-    return total
-}
+    return total;
+};
 
-console.log(todaysNet(todaysTransactions))
+console.log(todaysNet(todaysTransactions));
 
-// todaysTransactions.Pizza = 40 //오류
+// todaysTransactions.Pizza = 40; // 오류
 
-console.log(todaysTransactions['Dave'])
+console.log(todaysTransactions['Dave']); // undefined
 
 ///////////////////////////////////////
 
 interface Student {
     // [Key: string]: string | number | number[] | undefined
-    name: string,
-    GPA: number,
-    Classes?: number[]
+    name: string;
+    GPA: number;
+    Classes?: number[];
 }
 
 const student: Student = {
     name: "Doug",
     GPA: 3.5,
     Classes: [100, 200]
+};
+
+// console.log(Student.test); // 오류
+
+for (const key in student) {
+    console.log(`${key}: ${student[key as keyof Student]}`);
 }
 
-// console.log(Student.test)  //test는 undefined라서 가능
+Object.keys(student).map(key => {
+    console.log(student[key as keyof typeof student]);
+});
 
-for (const Key in student){
-    console.log(`${Key}: ${student[Key as Keyof Student]}`)
+
+const logStudentKey = (student: Student, key: keyof Student): void => {
+    console.log(`Student ${key}: ${student[key]}`)
 }
 
-Object.Keys(student).map(Key => {
-    console.log(student[Key as Keyof typeof student])
-})
+logStudentKey(student, 'GPA')
 
-const logStudentKey = 
+/////////////////////////////
+
+// interface Incomes {
+//     [key: string]: number
+// }
+
+type Streams = 'salary' | 'bonus' | 'sidehustle'
+
+type Incomes = Record<Streams, number | string> //Record<키의 타입, 값의 타입> 
+
+const monthlyIncomes: Incomes = {
+    salary: 500,
+    bonus: 100,
+    sidehustle: 250
+}
+
+for (const revenue in monthlyIncomes){
+    console.log(monthlyIncomes[revenue as keyof Incomes])
+}
