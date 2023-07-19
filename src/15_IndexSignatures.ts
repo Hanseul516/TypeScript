@@ -41,16 +41,26 @@ console.log(todaysTransactions['Dave'])
 ///////////////////////////////////////
 
 interface Student {
-    [Key: string]: string | number | number[] | undefined
+    // [Key: string]: string | number | number[] | undefined
     name: string,
     GPA: number,
     Classes?: number[]
 }
 
-const Student: Student = {
+const student: Student = {
     name: "Doug",
     GPA: 3.5,
     Classes: [100, 200]
 }
 
-console.log(Student.test)  //test는 undefined라서 가능
+// console.log(Student.test)  //test는 undefined라서 가능
+
+for (const Key in student){
+    console.log(`${Key}: ${student[Key as Keyof Student]}`)
+}
+
+Object.Keys(student).map(Key => {
+    console.log(student[Key as Keyof typeof student])
+})
+
+const logStudentKey = 
