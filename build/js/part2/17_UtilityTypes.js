@@ -1,5 +1,14 @@
 "use strict";
 // Utility Types
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 const updateAssignment = (assign, propsToUpdate) => {
     return Object.assign(Object.assign({}, assign), propsToUpdate);
 };
@@ -49,3 +58,20 @@ console.log(tsAssign);
 const assignArgs = ["Generics", 100];
 const tsAssign2 = createNewAssign(...assignArgs);
 console.log(tsAssign2);
+const fetchUsers = () => __awaiter(void 0, void 0, void 0, function* () {
+    // 비동기 함수 fetchUsers는 Promise를 반환하며, User[] 타입의 배열을 처리합니다.
+    try {
+        const data = yield fetch(`https://jsonplaceholder.typicode.com/users`); // 웹 API를 사용하여 데이터를 비동기로 가져옵니다.
+        const users = yield data.json(); // fetch로 가져온 데이터를 JSON으로 변환합니다.
+        return users; // User[] 타입의 배열을 반환합니다.
+    }
+    catch (err) {
+        // 에러가 발생한 경우 에러 메시지를 출력합니다.
+        if (err instanceof Error) {
+            console.log(err.message);
+        }
+        // 에러가 발생했을 때는 빈 배열을 반환합니다.
+        return [];
+    }
+});
+fetchUsers().then(users => console.log(users));

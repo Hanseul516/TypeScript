@@ -114,3 +114,38 @@ const tsAssign2: NewAssign = createNewAssign(...assignArgs)
 console.log(tsAssign2)
 
 
+
+// Awaited - 비동기 작업을 수행하는 Promise 객체의 결과 타입을 추출
+
+
+interface User {
+    id: number; // 유저 고유 식별번호
+    name: string; // 유저 이름
+    username: string; // 유저 닉네임
+    email: string; // 유저 이메일
+}
+
+const fetchUsers = async (): Promise<User[]> => {
+    // 비동기 함수 fetchUsers는 Promise를 반환하며, User[] 타입의 배열을 처리합니다.
+
+    try {
+        const data = await fetch(
+            `https://jsonplaceholder.typicode.com/users`
+        ); // 웹 API를 사용하여 데이터를 비동기로 가져옵니다.
+
+        const users = await data.json(); // fetch로 가져온 데이터를 JSON으로 변환합니다.
+        return users; // User[] 타입의 배열을 반환합니다.
+    } catch (err) {
+        // 에러가 발생한 경우 에러 메시지를 출력합니다.
+        if (err instanceof Error) {
+            console.log(err.message);
+        }
+        // 에러가 발생했을 때는 빈 배열을 반환합니다.
+        return [];
+    }
+};
+
+type FetchUsersReturnType =
+Awaited<ReturnType<typeof fetchUsers>>
+
+fetchUsers().then(users => console.log(users))
