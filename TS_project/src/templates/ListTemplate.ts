@@ -10,6 +10,8 @@ export default class ListTemplate implements DOMList {
 
     ul: HTMLUListElement
 
+    static instance: ListTemplate = new ListTemplate()
+
     private constructor() {
         this.ul = document.getElementById("listItems") as HTMLUListElement //타입단언
     }
@@ -32,7 +34,7 @@ export default class ListTemplate implements DOMList {
             item.checked = item.checked
             li.append(check)
 
-            check.addEventListener('change', ()=>{
+            check.addEventListener('change', () => {
                 item.checked = !item.checked
                 fullList.save()
             })
@@ -41,6 +43,18 @@ export default class ListTemplate implements DOMList {
             label.htmlFor = item.id
             label.textContent = item.item
             li.append(label)
+
+            const button = document.createElement("button") as HTMLButtonElement
+            button.className = 'button'
+            button.textContent = 'X'
+            li.append(button)
+
+            button.addEventListener('click', () => {
+                fullList.removeItem(item.id)
+                this.render(fullList) //render: HTML 요소로 변환하여 화면에 보여줌
+            })
+
+            this.ul.append(li)
         })
     }
 }
