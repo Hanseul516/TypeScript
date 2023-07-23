@@ -23,8 +23,13 @@ export default class FullList implements List {
         const storedList: string | null = localStorage.getItem("myList") //키의 '값'을 가져옴
         if (typeof storedList !== "string") return
 
-        const parsedList: {_id: string, _item: string, _checked: boolean}[]
-            =JSON.parse(storedList)
+        const parsedList: { _id: string, _item: string, _checked: boolean }[]
+            = JSON.parse(storedList) //parse: JSON 형식 -> JavaScript 객체
+
+        parsedList.forEach(itemObj => { //forEach: 지정된 함수를 순서대로 실행
+            const newListItem = new ListItem(itemObj._id, itemObj._item, itemObj._checked)
+            FullList.instance.addItem(newListItem)
+        })
     }
 
     save(): void { //setItem: 데이터저장(식별자-데이터)  //stringify: JSON 문자열로 변환
