@@ -5,9 +5,9 @@ export interface Item {
 }
 
 export default class ListItem implements Item {
-    //class를 만들때 constructor, get, this 세트
+
     constructor(
-        private _id: string = '', // = '',는 초기값으로 설정한 거
+        private _id: string = '',
         private _item: string = '',
         private _checked: boolean = false,
     ) { }
@@ -35,6 +35,4 @@ export default class ListItem implements Item {
     set checked(checked: boolean) {
         this._checked = checked
     }
-
-
 }
